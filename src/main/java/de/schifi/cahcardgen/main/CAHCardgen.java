@@ -1,7 +1,9 @@
 package de.schifi.cahcardgen.main;
 
-import de.schifi.cahcardgen.ui.MainWindow;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CAHCardgen extends Application {
@@ -12,7 +14,13 @@ public class CAHCardgen extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        MainWindow.init();
-        MainWindow.show();
+
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
+        Scene scene = new Scene(anchorPane);
+        stage.setTitle("CAH Card Generator");
+        stage.setScene(scene);
+
+        stage.show();
+
     }
 }

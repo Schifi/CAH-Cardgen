@@ -3,4 +3,4 @@ This is a tool for creating the black and white cards used to play [Cards Agains
 
 ## How to use
 1. Make sure to have [Maven installed](https://maven.apache.org/install.html).
-2. Type ```mvn clean javafx:run```
+2. Type ```mvn clean javafx:run```.
