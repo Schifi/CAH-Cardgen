@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.io.*;
@@ -21,8 +21,8 @@ public class CardGenerator {
 
     private Group group;
     private Scene scene;
-    private Stage stage;
 
+    Rectangle background;
     Label textLabel;
     Label packLabel;
 
@@ -49,8 +49,6 @@ public class CardGenerator {
             while ((line = bufferedReader.readLine()) != null) {
                 textList.add(line);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,13 +58,15 @@ public class CardGenerator {
         group = new Group();
         scene = new Scene(group, width, height);
 
+        background = new Rectangle(0, 0, 1000, 1000);
+        group.getChildren().add(background);
+
         textLabel = new Label();
         group.getChildren().add(textLabel);
         textLabel.setLayoutX(90);
         textLabel.setLayoutY(80);
         textLabel.setMaxWidth(820);
         textLabel.setFont(new Font("Arial", 100));
-        textLabel.setTextFill(Color.BLACK);
         textLabel.setWrapText(true);
 
         packLabel = new Label();
@@ -74,7 +74,8 @@ public class CardGenerator {
         packLabel.setLayoutX(40);
         packLabel.setLayoutY(950);
         packLabel.setFont(new Font("Arial", 23));
-        packLabel.setTextFill(Color.BLACK);
+
+        setCardType(CardType.WHITE);
     }
 
     private void saveImage(String filename) {
@@ -85,6 +86,21 @@ public class CardGenerator {
             ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setCardType(CardType cardType) {
+        switch (cardType) {
+            case WHITE:
+                background.setFill(Color.WHITE);
+                textLabel.setTextFill(Color.BLACK);
+                packLabel.setTextFill(Color.BLACK);
+                break;
+            case BLACK:
+                background.setFill(Color.BLACK);
+                textLabel.setTextFill(Color.WHITE);
+                packLabel.setTextFill(Color.WHITE);
+                break;
         }
     }
 

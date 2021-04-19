@@ -1,5 +1,5 @@
 package de.schifi.cahcardgen.main;
 
-public enum CardColor {
+public enum CardType {
     WHITE, BLACK
 }
