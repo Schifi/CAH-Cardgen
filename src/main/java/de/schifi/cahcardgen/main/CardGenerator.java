@@ -104,4 +104,8 @@ public class CardGenerator {
         }
     }
 
+    public void setDeckname(String deckname) {
+        packLabel.setText(deckname);
+    }
+
 }

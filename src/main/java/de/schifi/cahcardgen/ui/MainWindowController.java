@@ -4,7 +4,9 @@ import de.schifi.cahcardgen.main.CardGenerator;
 import de.schifi.cahcardgen.main.CardType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -26,12 +28,27 @@ public class MainWindowController {
     private RadioButton toggleBlack;
 
     @FXML
+    private CheckBox checkBoxDeckname;
+
+    @FXML
+    private TextField textFieldDeckname;
+
+    @FXML
     private void openFileChooser() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose the file with the card-text ...");
+        fileChooser.setTitle("Select the textfile ...");
         File file = fileChooser.showOpenDialog(buttonFileChooser.getScene().getWindow());
         cardGenerator = new CardGenerator(file);
         buttonStartGenerating.setDisable(false);
+    }
+
+    @FXML
+    private void toggleDeckname() {
+        if (checkBoxDeckname.isSelected()) {
+            textFieldDeckname.setDisable(false);
+        } else {
+            textFieldDeckname.setDisable(true);
+        }
     }
 
     @FXML
@@ -40,6 +57,12 @@ public class MainWindowController {
             cardGenerator.setCardType(CardType.WHITE);
         } else if (toggleBlack.isSelected()) {
             cardGenerator.setCardType(CardType.BLACK);
+        }
+
+        if (checkBoxDeckname.isSelected()) {
+            cardGenerator.setDeckname(textFieldDeckname.getText());
+        } else {
+            cardGenerator.setDeckname("");
         }
 
         cardGenerator.generateCards();
