@@ -34,6 +34,18 @@ public class MainWindowController {
     private TextField textFieldDeckname;
 
     @FXML
+    private Spinner<Integer> spinnerWidth;
+
+    @FXML
+    private Spinner<Integer> spinnerHeight;
+
+    @FXML
+    public void initialize() {
+        spinnerWidth.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(300, 3000, 1000));
+        spinnerHeight.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(300, 3000, 1000));
+    }
+
+    @FXML
     private void openFileChooser() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select the textfile ...");
@@ -54,6 +66,9 @@ public class MainWindowController {
 
     @FXML
     private void generateImages() {
+        cardGenerator.setWidth(spinnerWidth.getValue());
+        cardGenerator.setHeight(spinnerHeight.getValue());
+
         if (toggleWhite.isSelected()) {
             cardGenerator.setCardType(CardType.WHITE);
         } else if (toggleBlack.isSelected()) {

@@ -16,8 +16,8 @@ import java.util.List;
 
 public class CardGenerator {
 
-    private final int width = 1000;
-    private final int height = 1000;
+    private int width = 1000;
+    private int height = 1000;
 
     private Group group;
     private Scene scene;
@@ -59,9 +59,9 @@ public class CardGenerator {
 
     private void initGroup() {
         group = new Group();
-        scene = new Scene(group, width, height);
+        scene = new Scene(group, 3000, 3000);
 
-        background = new Rectangle(0, 0, 1000, 1000);
+        background = new Rectangle(0, 0, 3000, 3000);
         group.getChildren().add(background);
 
         textLabel = new Label();
@@ -109,6 +109,16 @@ public class CardGenerator {
 
     public void setDeckname(String deckname) {
         packLabel.setText(deckname);
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+        textLabel.setMaxWidth(width - 180);
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+        this.packLabel.setLayoutY(height - 60);
     }
 
 }
