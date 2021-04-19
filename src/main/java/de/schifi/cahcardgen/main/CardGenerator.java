@@ -35,11 +35,14 @@ public class CardGenerator {
         initGroup();
     }
 
-    public void generateCards() {
+    public int generateCards() {
+        int counter = 0;
         for (int i = 0; i < textList.size(); i++) {
             textLabel.setText(textList.get(i));
             saveImage(i + ".png");
+            counter++;
         }
+        return counter;
     }
 
     private void readFileToStringList() {

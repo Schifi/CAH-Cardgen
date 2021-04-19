@@ -3,10 +3,7 @@ package de.schifi.cahcardgen.ui;
 import de.schifi.cahcardgen.main.CardGenerator;
 import de.schifi.cahcardgen.main.CardType;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -14,6 +11,9 @@ import java.io.File;
 public class MainWindowController {
 
     private CardGenerator cardGenerator;
+
+    @FXML
+    private Label labelInfo;
 
     @FXML
     private Button buttonFileChooser;
@@ -40,6 +40,7 @@ public class MainWindowController {
         File file = fileChooser.showOpenDialog(buttonFileChooser.getScene().getWindow());
         cardGenerator = new CardGenerator(file);
         buttonStartGenerating.setDisable(false);
+        labelInfo.setText("File found. Ready to generate.");
     }
 
     @FXML
@@ -65,7 +66,8 @@ public class MainWindowController {
             cardGenerator.setDeckname("");
         }
 
-        cardGenerator.generateCards();
+        int generatedCards = cardGenerator.generateCards();
+        labelInfo.setText("Successfully generated " + generatedCards + " cards!");
     }
 
 }
