@@ -3,7 +3,6 @@ package de.schifi.cahcardgen.ui;
 import de.schifi.cahcardgen.main.CardGenerator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -25,6 +24,11 @@ public class MainWindowController {
         File file = fileChooser.showOpenDialog(buttonFileChooser.getScene().getWindow());
         cardGenerator = new CardGenerator(file);
         buttonStartGenerating.setDisable(false);
+    }
+
+    @FXML
+    private void generateImages() {
+        cardGenerator.generateCards();
     }
 
 }
