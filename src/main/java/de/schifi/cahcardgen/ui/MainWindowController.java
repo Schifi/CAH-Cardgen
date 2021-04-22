@@ -1,7 +1,7 @@
 package de.schifi.cahcardgen.ui;
 
-import de.schifi.cahcardgen.main.CardGenerator;
-import de.schifi.cahcardgen.main.CardType;
+import de.schifi.cahcardgen.generator.CardGenerator;
+import de.schifi.cahcardgen.generator.CardType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;

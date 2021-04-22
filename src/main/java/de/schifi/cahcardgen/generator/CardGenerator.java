@@ -1,4 +1,4 @@
-package de.schifi.cahcardgen.main;
+package de.schifi.cahcardgen.generator;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Group;
