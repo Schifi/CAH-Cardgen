@@ -1,10 +1,17 @@
 package de.schifi.cahcardgen.generator;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class CardPrinter {
 
@@ -37,16 +44,34 @@ public class CardPrinter {
         packLabel.setFont(new Font("Arial", 23));
     }
 
-    public void printCard(Card card) {
-        // TODO: Printing card to image file ...
-        /*WritableImage writableImage = new WritableImage(width, height);
+    private void adjustElementsForCard(Card card) {
+        textLabel.setMaxWidth(card.getWidth() - 180);
+        packLabel.setLayoutY(card.getHeight() - 60);
+
+        switch (card.getCardType()) {
+            case WHITE:
+                background.setFill(Color.WHITE);
+                textLabel.setTextFill(Color.BLACK);
+                packLabel.setTextFill(Color.BLACK);
+                break;
+            case BLACK:
+                background.setFill(Color.BLACK);
+                textLabel.setTextFill(Color.WHITE);
+                packLabel.setTextFill(Color.WHITE);
+                break;
+        }
+    }
+
+    public void printCard(Card card, String filename) {
+        adjustElementsForCard(card);
+        WritableImage writableImage = new WritableImage(card.getWidth(), card.getHeight());
         scene.snapshot(writableImage);
         File file = new File(filename);
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
 }
