@@ -1,7 +1,8 @@
 package de.schifi.cahcardgen.generator;
 
 import static org.junit.Assert.*;
-import org.junit.*;
+
+import org.junit.Test;
 
 public class CardGeneratorTest {
 
