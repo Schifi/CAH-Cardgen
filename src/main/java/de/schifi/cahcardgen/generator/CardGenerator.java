@@ -1,16 +1,15 @@
 package de.schifi.cahcardgen.generator;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 
-import javax.imageio.ImageIO;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +31,13 @@ public class CardGenerator {
     public CardGenerator(File file) {
         this.file = file;
         readFileToStringList();
-        initGroup();
     }
 
     public int generateCards() {
         int counter = 0;
         for (int i = 0; i < textList.size(); i++) {
             textLabel.setText(textList.get(i));
-            saveImage(i + ".png");
+            //saveImage(i + ".png"); TODO: Send to printer
             counter++;
         }
         return counter;
@@ -52,41 +50,6 @@ public class CardGenerator {
             while ((line = bufferedReader.readLine()) != null) {
                 textList.add(line);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void initGroup() {
-        group = new Group();
-        scene = new Scene(group, 3000, 3000);
-
-        background = new Rectangle(0, 0, 3000, 3000);
-        group.getChildren().add(background);
-
-        textLabel = new Label();
-        group.getChildren().add(textLabel);
-        textLabel.setLayoutX(90);
-        textLabel.setLayoutY(80);
-        textLabel.setMaxWidth(820);
-        textLabel.setFont(new Font("Arial", 100));
-        textLabel.setWrapText(true);
-
-        packLabel = new Label();
-        group.getChildren().add(packLabel);
-        packLabel.setLayoutX(40);
-        packLabel.setLayoutY(950);
-        packLabel.setFont(new Font("Arial", 23));
-
-        setCardType(CardType.WHITE);
-    }
-
-    private void saveImage(String filename) {
-        WritableImage writableImage = new WritableImage(width, height);
-        scene.snapshot(writableImage);
-        File file = new File(filename);
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
         } catch (IOException e) {
             e.printStackTrace();
         }
