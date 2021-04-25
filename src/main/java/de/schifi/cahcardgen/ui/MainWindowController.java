@@ -1,7 +1,6 @@
 package de.schifi.cahcardgen.ui;
 
 import de.schifi.cahcardgen.generator.CardGenerator;
-import de.schifi.cahcardgen.generator.CardType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
@@ -50,7 +49,9 @@ public class MainWindowController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select the textfile ...");
         File file = fileChooser.showOpenDialog(buttonFileChooser.getScene().getWindow());
-        cardGenerator = new CardGenerator(file);
+        cardGenerator = new CardGenerator();
+        // TODO: Assign file-instance to generator:
+        // cardGenerator.readCardFile(file);
         buttonStartGenerating.setDisable(false);
         labelInfo.setText("File found. Ready to generate.");
     }
@@ -65,24 +66,8 @@ public class MainWindowController {
     }
 
     @FXML
-    private void generateImages() {
-        cardGenerator.setWidth(spinnerWidth.getValue());
-        cardGenerator.setHeight(spinnerHeight.getValue());
+    private void generateImages() { // TODO: Implement
 
-        if (toggleWhite.isSelected()) {
-            cardGenerator.setCardType(CardType.WHITE);
-        } else if (toggleBlack.isSelected()) {
-            cardGenerator.setCardType(CardType.BLACK);
-        }
-
-        if (checkBoxDeckname.isSelected()) {
-            cardGenerator.setDeckname(textFieldDeckname.getText());
-        } else {
-            cardGenerator.setDeckname("");
-        }
-
-        int generatedCards = cardGenerator.generateCards();
-        labelInfo.setText("Successfully generated " + generatedCards + " cards!");
     }
 
 }

@@ -21,7 +21,7 @@ public class Card {
     }
 
     public Card() {
-        this(1000, 1000, CardType.WHITE);
+        this(1000, 1000);
     }
 
     // Getters and Setters
