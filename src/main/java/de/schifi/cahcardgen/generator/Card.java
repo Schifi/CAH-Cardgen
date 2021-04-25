@@ -9,9 +9,19 @@ public class Card {
     private String text;
     private String packname;
 
-    // Constructor
-    public Card() {
+    // Constructors
+    public Card(int width, int height, CardType cardType) {
+        this.width = width;
+        this.height = height;
+        this.cardType = cardType;
+    }
 
+    public Card(int width, int height) {
+        this(width, height, CardType.WHITE);
+    }
+
+    public Card() {
+        this(1000, 1000, CardType.WHITE);
     }
 
     // Getters and Setters
