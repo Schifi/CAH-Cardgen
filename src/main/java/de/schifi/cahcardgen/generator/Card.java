@@ -30,7 +30,13 @@ public class Card {
     }
 
     public void setWidth(int width) {
-        this.width = width;
+        if (width < 300) {
+            this.width = 300;
+        } else if (width > 3000) {
+            this.width = 3000;
+        } else {
+            this.width = width;
+        }
     }
 
     public int getHeight() {
@@ -38,7 +44,13 @@ public class Card {
     }
 
     public void setHeight(int height) {
-        this.height = height;
+        if (height < 300) {
+            this.height = 300;
+        } else if (height > 3000) {
+            this.height = 3000;
+        } else {
+            this.height = height;
+        }
     }
 
     public CardType getCardType() {

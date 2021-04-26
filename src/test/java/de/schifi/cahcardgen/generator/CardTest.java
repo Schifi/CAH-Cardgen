@@ -20,6 +20,52 @@ public class CardTest {
         assertEquals(700, card.getHeight());
     }
 
-    // TODO: Test for card-resolution boundaries! (width and height)
+    @Test
+    public void cardTest_01() {
+        card.setWidth(299);
+        assertEquals(300, card.getWidth());
+    }
+
+    @Test
+    public void cardTest_02() {
+        card.setWidth(300);
+        assertEquals(300, card.getWidth());
+    }
+
+    @Test
+    public void cardTest_03() {
+        card.setWidth(3000);
+        assertEquals(3000, card.getWidth());
+    }
+
+    @Test
+    public void cardTest_04() {
+        card.setWidth(3001);
+        assertEquals(3000, card.getWidth());
+    }
+
+    @Test
+    public void cardTest_05() {
+        card.setHeight(299);
+        assertEquals(300, card.getHeight());
+    }
+
+    @Test
+    public void cardTest_06() {
+        card.setHeight(300);
+        assertEquals(300, card.getHeight());
+    }
+
+    @Test
+    public void cardTest_07() {
+        card.setHeight(3000);
+        assertEquals(3000, card.getHeight());
+    }
+
+    @Test
+    public void cardTest_08() {
+        card.setHeight(3001);
+        assertEquals(3000, card.getHeight());
+    }
 
 }
