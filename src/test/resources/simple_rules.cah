@@ -1,5 +1,5 @@
 # This is a comment.
-# Lines will be only marked as a comment, if a '#' is at the very start of it!
+# Note: Lines will be only marked as a comment, if a '#' is at the very start of it!
 
 # Let's create some simple cards. They will be white, as this is the standard.
 One
@@ -9,7 +9,8 @@ Four
 Five
 
 # The following expression states, that all cards that follow shall be black.
-!BLACK
+# Note: There can only be one expression per line!
+!COLOR=BLACK
 Apple
 Banana
 Cherry
