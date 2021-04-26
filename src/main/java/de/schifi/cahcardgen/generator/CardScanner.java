@@ -8,6 +8,7 @@ public class CardScanner {
 
     private FileReader fileReader;
     private BufferedReader bufferedReader;
+
     private List<String> linesRead;
 
     // Card attributes if no other is specified or if standard is set
@@ -18,11 +19,11 @@ public class CardScanner {
         linesRead = new ArrayList<String>();
     }
 
-    public void setFile(File cardFile) {
+    public List<Card> readCardFile(File cardFile) {
+        // Reading the file
         try {
             this.fileReader = new FileReader(cardFile);
             this.bufferedReader = new BufferedReader(fileReader);
-
             String nextLine;
             while ((nextLine = bufferedReader.readLine()) != null) {
                 linesRead.add(nextLine);
@@ -30,23 +31,40 @@ public class CardScanner {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
-    public List<Card> readCardFile(File cardFile) {
+        // Creating the cards
         List<Card> cardsRead = new ArrayList<Card>();
-
         for (int i = 0; i < linesRead.size(); i++) {
             String newCardLine = linesRead.get(i);
             Card newCard = lineToCard(newCardLine);
-            cardsRead.add(newCard);
+            if (newCard != null) {
+                cardsRead.add(newCard);
+            }
         }
-
         return cardsRead;
     }
 
     private Card lineToCard(String line) { // TODO: Implement - this is where the magic happens
-        Card card = new Card();
-        return card;
+        // Check for comment line
+        if (line.startsWith("#")) {
+            System.out.println("COMMENT!");
+            return null;
+        }
+
+        // Check for empty lines
+        if (line.isEmpty()) {
+            System.out.println("EMPTY!");
+            return null;
+        }
+
+        // Check for instructions
+        if (line.startsWith("!")) {
+            System.out.println("INSTRUCTION!");
+            return null;
+        }
+
+        System.out.println("CARD!");
+        return new Card();
     }
 
 }
