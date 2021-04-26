@@ -20,4 +20,6 @@ public class CardTest {
         assertEquals(700, card.getHeight());
     }
 
+    // TODO: Test for card-resolution boundaries! (width and height)
+
 }

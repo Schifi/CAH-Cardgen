@@ -2,11 +2,17 @@ package de.schifi.cahcardgen.generator;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class CardGeneratorTest {
 
     private CardGenerator cardGenerator;
+
+    @Before
+    public void prepare() {
+        cardGenerator = new CardGenerator();
+    }
 
     @Test
     public void dummyTest01() {

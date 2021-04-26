@@ -1,0 +1,17 @@
+# This is a comment.
+# Lines will be only marked as a comment, if a '#' is at the very start of it!
+
+# Let's create some simple cards. They will be white, as this is the standard.
+One
+Two
+Three
+Four
+Five
+
+# The following expression states, that all cards that follow shall be black.
+!BLACK
+Apple
+Banana
+Cherry
+Dragon Fruit
+Elderberry
