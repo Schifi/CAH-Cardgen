@@ -1,11 +1,16 @@
 package de.schifi.cahcardgen.generator;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
+
+import static org.junit.Assert.assertEquals;
 
 public class CardTest {
+
+    @Rule
+    public final TestRule testWatcher = new TestMessages();
 
     private Card card;
 

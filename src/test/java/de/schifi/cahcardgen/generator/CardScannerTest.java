@@ -3,12 +3,17 @@ package de.schifi.cahcardgen.generator;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 import java.io.File;
 import java.util.List;
 
 public class CardScannerTest {
+
+    @Rule
+    public final TestRule testWatcher = new TestMessages();
 
     private CardScanner cardScanner;
 
@@ -18,13 +23,13 @@ public class CardScannerTest {
     }
 
     @Test
-    public void cardScannerTest_emptyFile_01() {
+    public void cardScannerTest_01() {
         List<Card> cardsRead = cardScanner.readCardFile(new File(getClass().getResource("/empty.cah").getFile()));
         assertEquals(0, cardsRead.size());
     }
 
     @Test
-    public void cardScannerTest_simpleRules_01() {
+    public void cardScannerTest_02() {
         List<Card> cardsRead = cardScanner.readCardFile(new File(getClass().getResource("/simple_rules.cah").getFile()));
         assertEquals(10, cardsRead.size());
         assertEquals(CardType.WHITE, cardsRead.get(0).getCardType());
