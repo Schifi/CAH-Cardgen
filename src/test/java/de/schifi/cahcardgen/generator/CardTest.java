@@ -15,12 +15,6 @@ public class CardTest {
     }
 
     @Test
-    public void dummyCardTest_01() {
-        card.setHeight(700);
-        assertEquals(700, card.getHeight());
-    }
-
-    @Test
     public void cardTest_01() {
         card.setWidth(299);
         assertEquals(300, card.getWidth());
