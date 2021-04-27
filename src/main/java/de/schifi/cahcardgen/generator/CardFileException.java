@@ -1,6 +1,6 @@
 package de.schifi.cahcardgen.generator;
 
-public class CardFileException extends Exception {
+public class CardFileException extends RuntimeException {
 
     public CardFileException() {
 
