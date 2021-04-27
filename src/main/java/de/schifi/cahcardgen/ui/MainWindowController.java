@@ -42,6 +42,7 @@ public class MainWindowController {
     public void initialize() {
         spinnerWidth.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(300, 3000, 1000));
         spinnerHeight.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(300, 3000, 1000));
+        cardGenerator = new CardGenerator();
     }
 
     @FXML
@@ -49,9 +50,7 @@ public class MainWindowController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select the textfile ...");
         File file = fileChooser.showOpenDialog(buttonFileChooser.getScene().getWindow());
-        cardGenerator = new CardGenerator();
-        // TODO: Assign file-instance to generator:
-        // cardGenerator.readCardFile(file);
+        cardGenerator.readCardFile(file); // TODO: Catch potential CardFileException
         buttonStartGenerating.setDisable(false);
         labelInfo.setText("File found. Ready to generate.");
     }
@@ -66,8 +65,9 @@ public class MainWindowController {
     }
 
     @FXML
-    private void generateImages() { // TODO: Implement
-
+    private void generateImages() {
+        int generatedCards = cardGenerator.generateCards();
+        labelInfo.setText(generatedCards + " cards generated!");
     }
 
 }

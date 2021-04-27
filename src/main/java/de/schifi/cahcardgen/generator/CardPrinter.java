@@ -48,6 +48,9 @@ public class CardPrinter {
         textLabel.setMaxWidth(card.getWidth() - 180);
         packLabel.setLayoutY(card.getHeight() - 60);
 
+        textLabel.setText(card.getText());
+        packLabel.setText(card.getPackname());
+
         switch (card.getCardType()) {
             case WHITE:
                 background.setFill(Color.WHITE);
