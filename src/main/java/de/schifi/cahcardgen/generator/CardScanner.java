@@ -27,7 +27,7 @@ public class CardScanner {
         standardPackname = "";
     }
 
-    public List<Card> readCardFile(File cardFile) {
+    public List<Card> readCardFile(File cardFile) throws CardFileException {
         // Reading the file
         try {
             this.fileReader = new FileReader(cardFile);
@@ -52,7 +52,7 @@ public class CardScanner {
         return cardsRead;
     }
 
-    private Card lineToCard(String line) {
+    private Card lineToCard(String line) throws CardFileException {
         // Check for comment line
         if (isCommentLine(line)) {
             return null;
@@ -73,7 +73,7 @@ public class CardScanner {
                 } else if (line.equals("BLACK")) {
                     standardCardType = CardType.BLACK;
                 } else {
-                    System.out.println("Error while reading .cah-file!"); // TODO: Change to exception
+                    throw new CardFileException("Could not interpret 'COLOR=" + line + "'!");
                 }
             } else if (line.startsWith("WIDTH=")) { // Change the standard width
                 line = line.substring(6);
@@ -81,7 +81,7 @@ public class CardScanner {
                     int newStandardWidth = Integer.parseInt(line);
                     standardWidth = newStandardWidth;
                 } catch (NumberFormatException e) {
-                    System.out.println("Error while reading .cah-file!"); // TODO: Change to exception
+                    throw new CardFileException("Could not interpret 'WIDTH=" + line + "'!");
                 }
             } else if(line.startsWith("HEIGHT=")) { // Change the standard height
                 line = line.substring(7);
@@ -89,13 +89,13 @@ public class CardScanner {
                     int newStandardHeight = Integer.parseInt(line);
                     standardHeight = newStandardHeight;
                 } catch (NumberFormatException e) {
-                    System.out.println("Error while reading .cah-file!"); // TODO: Change to exception
+                    throw new CardFileException("Could not interpret 'HEIGHT=" + line + "'!");
                 }
             } else if(line.startsWith("PACKNAME=")) { // Change the standard pack name
                 line = line.substring(9);
                 standardPackname = line;
             } else {
-                System.out.println("Error while reading .cah-file!"); // TODO: Change to exception
+                throw new CardFileException("Could not interpret '" + line + "'!");
             }
             return null;
         }

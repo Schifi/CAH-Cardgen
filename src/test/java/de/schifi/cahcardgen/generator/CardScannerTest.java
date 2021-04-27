@@ -82,6 +82,33 @@ public class CardScannerTest {
         assertEquals("Elderberry", cardsRead.get(9).getText());
     }
 
+    /**
+     * Converting 'cardScannerTest_04.cah' to cards.
+     * This test should throw a CardFileException due to the non-existent color 'RAINBOW'. (implement later?)
+     */
+    @Test(expected = CardFileException.class)
+    public void cardScannerTest_04() {
+        List<Card> cardsRead = cardScanner.readCardFile(new File(getClass().getResource("/cardScannerTest_04.cah").getFile()));
+    }
+
+    /**
+     * Converting 'cardScannerTest_05.cah' to cards.
+     * This test should throw a CardFileException due to the wring usage of !WIDTH=...
+     */
+    @Test(expected = CardFileException.class)
+    public void cardScannerTest_05() {
+        List<Card> cardsRead = cardScanner.readCardFile(new File(getClass().getResource("/cardScannerTest_05.cah").getFile()));
+    }
+
+    /**
+     * Converting 'cardScannerTest_06.cah' to cards.
+     * This test should throw a CardFileException due to the wring usage of !HEIGHT=...
+     */
+    @Test(expected = CardFileException.class)
+    public void cardScannerTest_06() {
+        List<Card> cardsRead = cardScanner.readCardFile(new File(getClass().getResource("/cardScannerTest_06.cah").getFile()));
+    }
+
     @Test
     public void isCommentLineTest_01() {
         String testLine = "# This is a comment.";
