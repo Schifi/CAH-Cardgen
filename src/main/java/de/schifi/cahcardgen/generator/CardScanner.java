@@ -54,12 +54,12 @@ public class CardScanner {
 
     private Card lineToCard(String line) {
         // Check for comment line
-        if (line.startsWith("#")) {
+        if (isCommentLine(line)) {
             return null;
         }
 
         // Check for empty lines
-        if (line.isEmpty()) {
+        if (line.isBlank()) {
             return null;
         }
 
@@ -102,12 +102,29 @@ public class CardScanner {
 
         // Card line
         Card newCard = new Card();
-        newCard.setText(line);
+        newCard.setText(removeCommentFromCardLine(line));
         newCard.setCardType(standardCardType);
         newCard.setWidth(standardWidth);
         newCard.setHeight(standardHeight);
         newCard.setPackname(standardPackname);
         return newCard;
+    }
+
+    boolean isCommentLine(String line) {
+        String lineCopy = line.stripLeading();
+        if (lineCopy.startsWith("#")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    String removeCommentFromCardLine(String line) {
+        if (line.contains("#")) {
+            line = line.split("#")[0];
+            line = line.stripTrailing();
+        }
+        return line;
     }
 
 }
